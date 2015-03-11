@@ -13,7 +13,7 @@
  */
 package org.bareng.hr.back.entity;
 
-import java.util.Date;
+import java.util.Date; 
 
 /**
  * A Class that hold employee's employment to a company's organization regarding to an agreement. 

@@ -17,7 +17,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * A Class that hold agreement between employee and the company.
+ * A Class that holds agreement between employee and the company.
  *
  * @author Arief Prihasanto <ariefp5758 at gmail.com>
  */

@@ -14,11 +14,11 @@
 package org.bareng.hr.back.entity;
 
 /**
- * An Enumeration that hold gender type
+ * An Enumeration that hold gender type 
  *
  * @author Arief Prihasanto <ariefp5758 at gmail.com>
  */
 public enum GenderType {
-    MALE,
+    MALE, 
     FEMALE
 }

@@ -2,23 +2,40 @@ package org.bareng.hr.back.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
 import java.util.List;
 
 @SuppressWarnings("serial")
 public class Employee implements Serializable {
 
+    @NotNull
     private Integer id;
-    
-    private String name;
-    
-    private Date dob;    // Date of Birth
-    
+
+    @NotBlank
+    private String regNumber;
+
+    @NotBlank
+    private String fullName;
+
+    @NotNull
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date birthDate;
+
+    @NotBlank
+    @Email
+    private String emailAddress;
+
     private GenderType gender;
-    
+
     /* An attribute to save employee's agreements to the company.
-    *  It forms a one to many relationship to the EmployeeAgreement class.
-    */
-    private List<EmployeeAgreement> agreements; 
+     *  It forms a one to many relationship to the EmployeeAgreement class.
+     */
+    private List<EmployeeAgreement> agreements;
 
     public Integer getId() {
         return id;
@@ -28,20 +45,36 @@ public class Employee implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getRegNumber() {
+        return regNumber;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRegNumber(String regNumber) {
+        this.regNumber = regNumber;
     }
 
-    public Date getDob() {
-        return dob;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setDob(Date dob) {
-        this.dob = dob;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
     }
 
     public GenderType getGender() {
