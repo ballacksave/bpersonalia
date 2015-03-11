@@ -1,9 +1,10 @@
 <!doctype html>
 <html>
 	<head>
-		<title>Employee Details</title>
+		<title>Hello</title>
 	</head>
 	<body>
-		<h1>Employee Details</h1>
+		<h1>Hello World!</h1>
+		<p>This page rendered using spring webmvc controller</p>
 	</body>
 </html>

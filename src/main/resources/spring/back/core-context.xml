@@ -7,8 +7,34 @@
 
 	<context:annotation-config />
 	<context:component-scan base-package="org.bareng.hr.back"></context:component-scan>
-	<context:property-placeholder location="classpath:spring/application.properties" />
 	
-	<!-- Enable method validation, just use bean validation constrain on method parameters -->
+	<!--
+	Default application properties.
+	-->
+	<context:property-placeholder 
+		location="classpath:spring/application.properties" 
+		order="3" />
+	
+	<!--
+	This is enable to use local properties (wont be synced to public repository) and override properties on default location.
+	-->
+	<context:property-placeholder 
+		location="classpath:spring/application.local.properties" 
+		ignore-resource-not-found="true" 
+		ignore-unresolvable="true" 
+		order="2" />
+	
+	<!--
+	This enable to use properties file ${user.home}/.bpersonalia/application.properties and override content of other files.
+	-->
+	<context:property-placeholder 
+		location="${user.home}/.bpersonalia/application.properties" 
+		ignore-resource-not-found="true" 
+		ignore-unresolvable="true" 
+		order="1" />
+	
+	<!-- 
+	Enable method validation, just use bean validation constrain on method parameters
+	-->
 	<bean id="methodValidationPostProcessor" class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor"/>
 </beans>
