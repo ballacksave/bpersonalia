@@ -37,6 +37,11 @@ public class Employee implements Serializable {
      */
     private List<EmployeeAgreement> agreements;
 
+    public Employee() {}
+    public Employee(Integer id) {
+    	this.id = id;
+    }
+    
     public Integer getId() {
         return id;
     }

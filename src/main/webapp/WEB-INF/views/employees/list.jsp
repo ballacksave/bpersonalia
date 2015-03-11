@@ -1,9 +1,9 @@
 <!doctype html>
 <html>
 	<head>
-		<title>Employee Details</title>
+		<title>Employee List</title>
 	</head>
 	<body>
-		<h1>Employee Details</h1>
+		<h1>Employee List</h1>
 	</body>
 </html>
