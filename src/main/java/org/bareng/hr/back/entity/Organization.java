@@ -21,8 +21,10 @@ package org.bareng.hr.back.entity;
  */
 public class Organization {
     
+    @NotNull
     private int id;
     
+    @NotBlank
     private String name;
     
     private String remarks;
