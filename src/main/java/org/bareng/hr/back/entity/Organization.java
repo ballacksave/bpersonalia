@@ -14,6 +14,9 @@
  */
 package org.bareng.hr.back.entity;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
+
 /**
  * A Class that hold organizational tree of the company.
  *
@@ -30,6 +33,8 @@ public class Organization {
     private String remarks;
     
     private Organization parent;
+    
+    private List<Organization> child;
 
     public int getId() {
         return id;
