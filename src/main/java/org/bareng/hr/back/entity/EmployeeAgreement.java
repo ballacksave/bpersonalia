@@ -13,6 +13,9 @@
  */
 package org.bareng.hr.back.entity;
 
+
+import javax.validation.constraints.NotNull;
+
 import java.util.Date;
 import java.util.List;
 
@@ -23,10 +26,13 @@ import java.util.List;
  */
 public class EmployeeAgreement {
     
+    @NotNull
     private Employee employee;
     
+    @NotNull
     private EmployeeAgreementType agreementType;
     
+    @NotNull
     private Date fromDate;
     
     private Date thruDate;
