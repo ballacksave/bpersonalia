@@ -2,7 +2,7 @@
 Belajar Java Bareng - HR System
 
 ## What is it?
-bpersonalia is an opensource software for HR system. At beginning state of this project is intented as learning java project for new developer but not to close opportunity become embrio for real production grade of opensource HR System.
+bpersonalia is an opensource software for HR system. At beginning state of this project, it is intented as learning java project for new developer but not to close opportunity become embrio for real production grade of opensource HR System.
 
 The HR System will be develop based on regulation of Indonesia Policy (UU Ketenagakerjaan Indonesia).
 
