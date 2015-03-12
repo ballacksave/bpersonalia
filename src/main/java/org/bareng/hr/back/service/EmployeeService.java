@@ -14,36 +14,36 @@ import org.springframework.data.domain.Pageable;
  * @author zakyalvan
  */
 public interface EmployeeService {
-	List<Employee> getEmployees();
-	
-	/**
-	 * Retrieve paged list of employees.
-	 * 
-	 * @return
-	 */
-	Page<Employee> getEmployees(@NotNull Pageable pageable);
-	
-	/**
-	 * Find employee details by id.
-	 * 
-	 * @param id
-	 * @return
-	 */
-	Employee getEmployeeDetails(@NotNull Integer id);
+    List<Employee> getEmployees();
 
-	/**
-	 * Register an employee, return persisted version.
-	 * 
-	 * @param employee
-	 * @return
-	 */
-	Employee registerEmployee(Employee employee);
-	
-	/**
-	 * Check whether given id is id of registered employee.
-	 * 
-	 * @param id
-	 * @return
-	 */
-	boolean isRegisteredEmployee(@NotNull Integer id);
+    /**
+     * Retrieve paged list of employees.
+     * 
+     * @return
+     */
+    Page<Employee> getEmployees(@NotNull Pageable pageable);
+
+    /**
+     * Find employee details by id.
+     * 
+     * @param id
+     * @return
+     */
+    Employee getEmployeeDetails(@NotNull Integer id);
+
+    /**
+     * Register an employee, return persisted version.
+     * 
+     * @param employee
+     * @return
+     */
+    Employee registerEmployee(Employee employee);
+
+    /**
+     * Check whether given id is id of registered employee.
+     * 
+     * @param id
+     * @return
+     */
+    boolean isRegisteredEmployee(@NotNull Integer id);
 }

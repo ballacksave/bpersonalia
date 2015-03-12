@@ -1,2 +1,0 @@
-#Sensitive Properties
-If you want to store any sensitive or private properties (e.g. password), please use file "application.local.properties", create one if it not already exists. This file wont be pushed to public repository (ignored in .gitignore already), except you copy the source file directly.

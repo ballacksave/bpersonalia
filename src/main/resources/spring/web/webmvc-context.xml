@@ -17,6 +17,20 @@
 	<context:component-scan base-package="org.bareng.hr.web.controller">
 	</context:component-scan>
 	
+    <!--
+    This bean allows to externalize property for messages and labels and resolvable using message code.
+    -->
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="fallbackToSystemLocale" value="false"></property>
+        <property name="basenames">
+            <array>
+                <value>/WEB-INF/i18n/labels</value>
+                <value>/WEB-INF/i18n/messages</value>
+                <value>/WEB-INF/i18n/patterns</value>
+            </array>
+        </property>
+    </bean>
+    
 	<!--
 	Enable use annotation on mapping and handling request etc.
 	-->
@@ -43,11 +57,15 @@
 	</mvc:annotation-driven>
 	
 	<!--
-	Configuration for view resolver.
+	Configuration for view resolver. We are using tiles as default view resolver.
 	-->
 	<mvc:view-resolvers>
+        <mvc:tiles prefix="/WEB-INF/views/" suffix=".jsp" />
 		<mvc:jsp prefix="/WEB-INF/views/" suffix=".jsp"/>
 	</mvc:view-resolvers>
+    <mvc:tiles-configurer check-refresh="true" validate-definitions="true">
+        <mvc:definitions location="/WEB-INF/templates/definitions.xml"/>
+    </mvc:tiles-configurer>
 	
 	<!-- 
 	Enable default servlet handler 
@@ -71,10 +89,4 @@
 	<mvc:view-controller path="/unauthorized" view-name="unauthorized" status-code="401" />
 	<mvc:view-controller path="/access-denied" view-name="access-denied" status-code="403" />
 	<mvc:view-controller path="/server-error" view-name="server-error" status-code="500" />
-	
-	<!-- 
-	This is configuration class to simplify passing in and out pagination and sorting object, start from controller.
-	Normally, this type will be registered when @EnableSpringDataWebSupport found on config class.
-	-->
-	<bean class="org.springframework.data.web.config.SpringDataWebConfiguration" />
 </beans>

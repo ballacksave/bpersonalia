@@ -1,8 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
-	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.3.xsd
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
-	
-	
+    
+    <!-- 
+    If you want or have to create table, add column or any other database manipulation,
+    please add new changeSet element, don't change any already published changeSets.
+    -->
+    <changeSet id="1" author="zakyalvan">
+        <createTable tableName="tb_employee">
+            <column name="id" type="integer" autoIncrement="true"
+                startWith="1" incrementBy="1">
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+            <column name="register_number" type="varchar(10)">
+                <constraints nullable="false" />
+            </column>
+            <column name="full_name" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
+            <column name="birth_date" type="date">
+                <constraints nullable="false" />
+            </column>
+            <column name="email_address" type="varchar(50)">
+                <constraints nullable="false" unique="true"
+                    uniqueConstraintName="employee_email_address_unique" />
+            </column>
+            <column name="gender_type" type="varchar(6)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+        <createTable tableName="tb_organization">
+            <column name="id" type="integer" autoIncrement="true"
+                startWith="1" incrementBy="1">
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
+            <column name="remarks" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="parent_id" type="integer">
+                <constraints nullable="true"
+                    referencedTableName="tb_organization"
+                    referencedColumnNames="id" foreignKeyName="parent_id" />
+            </column>
+        </createTable>
+    </changeSet>
 </databaseChangeLog>

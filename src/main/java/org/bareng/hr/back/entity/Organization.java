@@ -15,20 +15,28 @@
  */
 package org.bareng.hr.back.entity;
 
+import java.util.List;
+
+import org.hibernate.validator.constraints.NotBlank;
+
 /**
  * A Class that hold organizational tree of the company.
  *
  * @author Arief Prihasanto <ariefp5758 at gmail.com>
  */
 public class Organization {
-    
+    // Id of new entity must be null.
+    //@NotNull
     private int id;
     
+    @NotBlank
     private String name;
     
     private String remarks;
     
     private Organization parent;
+    
+    private List<Organization> child;
 
     public int getId() {
         return id;

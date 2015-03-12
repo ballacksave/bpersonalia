@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib version="2.1" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd">
+
+	<tlib-version>1.0</tlib-version>
+	<short-name>Pagination</short-name>
+	<uri>http://bareng.org/hr/spring-data-paging</uri>
+ 
+	<tag>
+		<name>paging</name>
+		<tag-class>org.bareng.hr.web.taglib.SpringDataPagingTag</tag-class>
+		<body-content>empty</body-content>
+
+		<attribute>
+			<name>pagedListModelName</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>String</type>
+			<!-- 
+			<description>Model attribute name which contain page object. You have to define this unless your model attribute name is "pagedDataList"</description>
+			 -->
+		</attribute>
+		<attribute>
+			<name>maxNavagationDisplayed</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>Integer</type>
+			<!-- 
+			<description>Maximum number of page navigation to be displayed, default 10</description>
+			 -->
+		</attribute>
+		<attribute>
+			<name>pageRequestParamName</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>String</type>
+			<!-- 
+			<description>Request parameter name representing page number being requested</description>
+			 -->
+		</attribute>
+		<attribute>
+			<name>sizeRequestParamName</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>			
+			<type>String</type>
+			<!-- 
+			<description>Request parameter name representing page size being requested</description>
+			 -->
+		</attribute>
+	</tag>
+</taglib>

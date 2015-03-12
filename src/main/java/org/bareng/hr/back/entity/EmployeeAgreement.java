@@ -16,19 +16,26 @@ package org.bareng.hr.back.entity;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+import org.springframework.format.annotation.DateTimeFormat;
+
 /**
  * A Class that holds agreement between employee and the company.
  *
  * @author Arief Prihasanto <ariefp5758 at gmail.com>
  */
 public class EmployeeAgreement {
-    
+    @NotNull
     private Employee employee;
     
+    @NotNull
     private EmployeeAgreementType agreementType;
     
+    @NotNull
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date fromDate;
     
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date thruDate;
     
     /*

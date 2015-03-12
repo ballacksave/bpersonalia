@@ -21,9 +21,10 @@
 	<!-- This factory bean for MyBatis SqlSessionFactory -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
+		<property name="typeAliasesPackage" value="org.bareng.hr.back" />
 		<property name="mapperLocations" value="classpath*:mybatis/mappers/**/*.xml" />
 	</bean>
-	<mybatis-spring:scan base-package="org.bareng.hr.back" annotation="org.springframework.stereotype.Repository"/>
+	<mybatis-spring:scan base-package="org.bareng.hr.back" marker-interface="org.bareng.hr.back.repository.Repository" />
 
 	<!-- Default transaction manager to be used on this application -->
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

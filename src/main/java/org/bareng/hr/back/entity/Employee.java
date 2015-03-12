@@ -12,8 +12,8 @@ import java.util.List;
 
 @SuppressWarnings("serial")
 public class Employee implements Serializable {
-
-    @NotNull
+	// On employee creation or registration this field supposed to be null.
+    //@NotNull
     private Integer id;
 
     @NotBlank
@@ -30,6 +30,7 @@ public class Employee implements Serializable {
     @Email
     private String emailAddress;
 
+    @NotNull
     private GenderType gender;
 
     /* An attribute to save employee's agreements to the company.

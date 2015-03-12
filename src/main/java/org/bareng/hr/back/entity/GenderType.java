@@ -14,11 +14,20 @@
 package org.bareng.hr.back.entity;
 
 /**
- * An Enumeration that hold gender type 
+ * An Enumeration that represent gender type. Label can be used for resolving
+ * label from message source (i18n related).
  *
  * @author Arief Prihasanto <ariefp5758 at gmail.com>
  */
 public enum GenderType {
-    MALE, 
-    FEMALE
+    MALE    ("label.entity.genderType.male"), 
+    FEMALE  ("label.entity.genderType.female");
+    
+    private final String labelCode;
+    private GenderType(String labelCode) {
+        this.labelCode = labelCode;
+    }
+    public String getLabelCode() {
+        return labelCode;
+    }
 }

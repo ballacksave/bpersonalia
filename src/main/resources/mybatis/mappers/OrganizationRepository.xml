@@ -1,0 +1,55 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.bareng.hr.back.repository.OrganizationRepository">
+    <select id="findAll" resultMap="organizationMap">
+		<![CDATA[
+		SELECT * FROM tb_organization org
+		LEFT OUTER JOIN tb_organization parent ON org.parent_id = parent.id
+		]]>
+    </select>
+    <select id="findOne" parameterType="int" resultMap="organizationMap">
+		<![CDATA[
+		SELECT * FROM tb_organization o WHERE o.id = #{id}
+		]]>
+    </select>
+    <select id="exists" parameterType="int" resultType="boolean">
+		<![CDATA[
+		SELECT COUNT(org.id)>0 FROM tb_organization org WHERE org.id = #{id}
+		]]>
+    </select>
+    <select id="countAll" parameterType="int" resultType="long">
+		<![CDATA[
+		SELECT COUNT(org.id) FROM tb_organization org WHERE org.id = #{id}
+		]]>
+    </select>
+    <insert id="insert" parameterType="Organization">
+		<![CDATA[
+		INSERT INTO tb_organization (name, remarks) VALUES (#{name}, #{remarks})
+		]]>
+        <selectKey order="AFTER" keyProperty="id" resultType="java.lang.Integer">
+            <![CDATA[
+            SELECT CURRVAL('tb_organization_id_seq')
+            ]]>
+        </selectKey>
+    </insert>
+    <insert id="insertAll" parameterType="java.util.List">
+        <![CDATA[
+        INSERT INTO tb_organization (name, remarks) VALUES 
+        ]]>
+        <foreach collection="list" item="organization" index="index" separator=",">
+            <![CDATA[
+            (#{name}, #{remarks})
+            ]]>
+        </foreach>
+        <selectKey order="AFTER" keyProperty="id" resultType="java.lang.Integer">
+            <![CDATA[
+            SELECT CURRVAL('tb_organization_id_seq')
+            ]]>
+        </selectKey>
+    </insert>
+
+    <resultMap id="organizationMap" type="Organization">
+        <id column="id" property="id" />
+        <association column="parent_id" property="parent"
+            select="findOne" />
+    </resultMap>
+</mapper>
