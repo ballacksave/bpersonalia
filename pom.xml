@@ -49,7 +49,6 @@
         <role>developer</role>
       </roles>
     </developer>
-    
     <developer>
       <id>Code21k</id>
       <name>Christian Kumala</name>
@@ -64,6 +63,17 @@
       <name>Ahmad Ginanjar</name>
       <email>ahmad.ginanjar.m@gmail.com</email>
       <url>https://www.facebook.com/aginanjar</url>
+      <roles>
+        <role>developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>byanto</id>
+      <name>Budi Yanto</name>
+      <email>contact@budiyanto.info</email>
+      <url>http://www.linkedin.com/in/byanto</url>
+      <organization>KNIME.com GmbH</organization>
+      <organizationUrl>https://www.knime.org</organizationUrl>
       <roles>
         <role>developer</role>
       </roles>
