@@ -13,18 +13,18 @@ The HR System will be develop based on regulation of Indonesia Policy (UU Ketena
 3. Leave Management
 
 ##### Alpha 2
-4. employe grade/leveling
-5. training
-6. job spesification/job position/gap management
+1. employe grade/leveling
+2. training
+3. job spesification/job position/gap management
 
 ##### Alpha 3
-7. Time Management
-8. Compensation & Benefit
-9. Payroll
+1. Time Management
+2. Compensation & Benefit
+3. Payroll
 
 ##### Alpha 4
-10. Onboarding
-11. terminating
+1. Onboarding
+2. terminating
 
 ## Technology Stack
 - Maven 3
@@ -34,8 +34,8 @@ The HR System will be develop based on regulation of Indonesia Policy (UU Ketena
 
 ## How to Contribute
 - Fork this project to your GitHub account
-- Clone your fork to your local computer
-- Create topic or feature branch, don't work in master branch. This will avoid breaking the master branch and help keeping it as productive branch
+- Clone your fork to local computer
+- Create a topic or feature branch, don't work in the master branch. This will avoid breaking the master branch and help keeping it as a productive branch
 - Make some commits to improve the project
 - Push your branch to your fork
 - Open a pull request on GitHub
