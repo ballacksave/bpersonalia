@@ -11,13 +11,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+ 
 package org.bareng.hr.back.entity;
-
-
-import javax.validation.constraints.NotNull;
 
 import java.util.Date;
 import java.util.List;
+
+import javax.validation.constraints.NotNull;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * A Class that holds agreement between employee and the company.
@@ -33,8 +34,10 @@ public class EmployeeAgreement {
     private EmployeeAgreementType agreementType;
     
     @NotNull
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date fromDate;
     
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date thruDate;
     
     /*
