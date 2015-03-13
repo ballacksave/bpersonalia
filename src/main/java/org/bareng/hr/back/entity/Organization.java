@@ -15,8 +15,11 @@
  */
 package org.bareng.hr.back.entity;
 
+
+import java.io.Serializable;
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotBlank;
 
 /**
@@ -24,8 +27,9 @@ import org.hibernate.validator.constraints.NotBlank;
  *
  * @author Arief Prihasanto <ariefp5758 at gmail.com>
  */
-public class Organization {
-    // Id of new entity must be null.
+@SuppressWarnings("serial")
+public class Organization implements Serializable {
+    // Id of new entity must be null. Optionally, we can use validation group for this.
     //@NotNull
     private int id;
     

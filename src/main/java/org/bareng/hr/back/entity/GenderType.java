@@ -16,6 +16,9 @@ package org.bareng.hr.back.entity;
 /**
  * An Enumeration that represent gender type. Label can be used for resolving
  * label from message source (i18n related).
+ * 
+ * <b>NOTE</b>
+ * Any enum are inherently serializable, no need to mark them as {@linkplain Serializable}.
  *
  * @author Arief Prihasanto <ariefp5758 at gmail.com>
  */

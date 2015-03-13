@@ -13,6 +13,7 @@
  */ 
 package org.bareng.hr.back.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.validation.constraints.NotNull;
@@ -23,7 +24,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  *
  * @author Arief Prihasanto <ariefp5758 at gmail.com>
  */
-public class Employment {
+public class Employment implements Serializable {
     
     @NotNull
     private EmployeeAgreement agreement;

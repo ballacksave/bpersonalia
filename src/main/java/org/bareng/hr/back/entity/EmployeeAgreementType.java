@@ -13,6 +13,7 @@
  */
 package org.bareng.hr.back.entity;
 
+import java.io.Serializable;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -21,7 +22,8 @@ import org.hibernate.validator.constraints.NotBlank;
  *
  * @author Arief Prihasanto <ariefp5758 at gmail.com>
  */
-public class EmployeeAgreementType {
+@SuppressWarnings("serial")
+public class EmployeeAgreementType implements Serializable {
     
     @NotNull
     private int id;

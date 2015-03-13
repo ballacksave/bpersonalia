@@ -13,10 +13,12 @@
  */
 package org.bareng.hr.back.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
@@ -24,7 +26,9 @@ import org.springframework.format.annotation.DateTimeFormat;
  *
  * @author Arief Prihasanto <ariefp5758 at gmail.com>
  */
-public class EmployeeAgreement {
+@SuppressWarnings("serial")
+public class EmployeeAgreement implements Serializable {
+    
     @NotNull
     private Employee employee;
     
