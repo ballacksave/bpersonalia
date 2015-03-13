@@ -15,7 +15,7 @@ package org.bareng.hr.back.entity;
 
 import java.io.Serializable;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  *
