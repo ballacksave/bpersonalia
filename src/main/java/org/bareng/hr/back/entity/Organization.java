@@ -18,7 +18,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  * A Class that hold organizational tree of the company.
