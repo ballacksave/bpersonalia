@@ -13,6 +13,7 @@
  */
 package org.bareng.hr.back.entity;
 
+import java.io.Serializable;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.NotBlank;
 
@@ -20,7 +21,7 @@ import javax.validation.constraints.NotBlank;
  *
  * @author Arief Prihasanto <ariefp5758 at gmail.com>
  */
-public class EmployeeAgreementType {
+public class EmployeeAgreementType implements Serializable {
     
     @NotNull
     private int id;
