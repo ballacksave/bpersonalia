@@ -14,6 +14,7 @@
  */
 package org.bareng.hr.back.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
@@ -24,7 +25,7 @@ import javax.validation.constraints.NotBlank;
  *
  * @author Arief Prihasanto <ariefp5758 at gmail.com>
  */
-public class Organization {
+public class Organization implements Serializable {
     
     @NotNull
     private int id;

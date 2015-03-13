@@ -13,12 +13,14 @@
  */
 package org.bareng.hr.back.entity;
 
+import java.io.Serializable;
+
 /**
  * An Enumeration that hold gender type 
  *
  * @author Arief Prihasanto <ariefp5758 at gmail.com>
  */
-public enum GenderType {
+public enum GenderType implements Serializable {
     MALE, 
     FEMALE
 }
