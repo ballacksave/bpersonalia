@@ -78,6 +78,15 @@
                 <role>developer</role>
             </roles>
         </developer>
+        <developer>
+            <id>pnukeid</id>
+            <name>Eka Rudito</name>
+            <email>eka@rudito.web.id</email>
+            <url>https://www.facebook.com/Eka.Rdt</url>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
     </developers>
 
     <properties>
