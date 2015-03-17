@@ -6,7 +6,7 @@
 		]]>
     </select>
     <select id="findOne" parameterType="int" resultMap="employeeMap">
-		<![CDATA[
+        <![CDATA[
 		SELECT * FROM tb_employee emp
 		WHERE emp.id = #{id}
 		]]>
@@ -17,38 +17,43 @@
 		WHERE emp.id = #{id}
 		]]>
     </select>
-    
+
     <select id="countAll" resultType="long">
 		<![CDATA[
 		SELECT COUNT(emp.id) FROM tb_employee emp
 		]]>
     </select>
 
-    <!-- Saving employee data -->
-    <insert id="insert" parameterType="Employee" useGeneratedKeys="true">
+    <!-- Saving employee data, and set id property of parameter object with database generated id wich is assigned for related database row  -->
+    <insert id="insert" parameterType="Employee"
+        useGeneratedKeys="true">
 		<![CDATA[
 		INSERT INTO tb_employee(register_number, full_name, birth_date, email_address, gender_type) 
 		VALUES (#{regNumber}, #{fullName}, #{birthDate}, #{emailAddress}, #{gender})
 		]]>
-        <selectKey order="AFTER" keyProperty="id"
-            resultType="java.lang.Integer">
+        <selectKey order="AFTER" keyProperty="id" resultType="java.lang.Integer" databaseId="postgre">
 			<![CDATA[SELECT CURRVAL('tb_employee_id_seq')]]>
+        </selectKey>
+        <selectKey order="AFTER" keyProperty="id" resultType="java.lang.Integer" databaseId="hsqldb">
+            <![CDATA[CALL IDENTITY()]]>
         </selectKey>
     </insert>
 
     <!-- Saving collection of employee data -->
-    <insert id="insertAll" parameterType="java.util.List" useGeneratedKeys="true">
+    <insert id="insertAll" parameterType="java.util.List"
+        useGeneratedKeys="true">
         <![CDATA[
         INSERT INTO tb_employee(register_number, full_name, birth_date, email_address, gender_type) 
         VALUES
         ]]>
-        <foreach collection="list" item="emp" index="index" open="" separator="," close="">
+        <foreach collection="list" item="emp" index="index"
+            open="" separator="," close="">
             <![CDATA[
             (#{emp.regNumber}, #{emp.fullName}, #{emp.birthDate}, #{emp.emailAddress}, #{emp.gender})
             ]]>
         </foreach>
     </insert>
-    
+
     <!-- Updating employee data -->
     <update id="update" parameterType="Employee">
 		<![CDATA[

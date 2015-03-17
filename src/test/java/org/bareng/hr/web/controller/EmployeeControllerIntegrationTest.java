@@ -8,6 +8,7 @@ import static org.hamcrest.beans.HasPropertyWithValue.hasProperty;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -26,6 +27,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.ContextHierarchy;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -54,6 +56,7 @@ import org.springframework.web.context.WebApplicationContext;
     @ContextConfiguration(locations = "classpath*:spring/back/*-context.xml"),
     @ContextConfiguration(locations = "classpath*:spring/web/*-context.xml") })
 @WebAppConfiguration
+@ActiveProfiles("test")
 public class EmployeeControllerIntegrationTest {
     @Autowired
     private WebApplicationContext applicationContext;
@@ -76,6 +79,7 @@ public class EmployeeControllerIntegrationTest {
     public void prepare() {
         // Prepare mock mvc.
         mockMvc = MockMvcBuilders.webAppContextSetup(applicationContext)
+                .alwaysDo(print())
                 .build();
         
         // Prepare data.

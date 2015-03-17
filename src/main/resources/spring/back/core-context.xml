@@ -1,40 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:cache="http://www.springframework.org/schema/cache"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.1.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd">
 
-	<context:annotation-config />
-	<context:component-scan base-package="org.bareng.hr.back"></context:component-scan>
-	
-	<!--
-	Default application properties.
-	-->
-	<context:property-placeholder 
-		location="classpath:spring/application.properties" 
-		order="3" />
-	
-	<!--
-	This is enable to use local properties (wont be synced to public repository) and override properties on default location.
-	-->
-	<context:property-placeholder 
-		location="classpath:spring/application.local.properties" 
-		ignore-resource-not-found="true" 
-		ignore-unresolvable="true" 
-		order="2" />
-	
-	<!--
-	This enable to use properties file ${user.home}/.bpersonalia/application.properties and override content of other files.
-	-->
-	<context:property-placeholder 
-		location="${user.home}/.bpersonalia/application.properties" 
-		ignore-resource-not-found="true" 
-		ignore-unresolvable="true" 
-		order="1" />
-	
-	<!-- 
-	Enable method validation, just use bean validation constrain on method parameters
-	-->
-	<bean id="methodValidationPostProcessor" class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor"/>
+    <context:annotation-config />
+    <context:component-scan base-package="org.bareng.hr.back"></context:component-scan>
+
+    <!-- Default application properties. -->
+    <context:property-placeholder
+        location="classpath:spring/application.properties" order="3" />
+
+    <!-- This is enable to use local properties (wont be synced to public 
+        repository) and override properties on default location. -->
+    <context:property-placeholder
+        location="classpath:spring/application.local.properties"
+        ignore-resource-not-found="true" ignore-unresolvable="true"
+        order="2" />
+
+    <!-- This enable to use properties file ${user.home}/.bpersonalia/application.properties 
+        and override content of other files. -->
+    <context:property-placeholder
+        location="${user.home}/.bpersonalia/application.properties"
+        ignore-resource-not-found="true" ignore-unresolvable="true"
+        order="1" />
+
+    <!-- Enable method validation, just use bean validation constrain on 
+        method parameters -->
+    <bean id="methodValidationPostProcessor"
+        class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor" />
+        
+    <!-- Caching support configuration -->
+    <cache:annotation-driven cache-manager="cacheManager" />
+    <bean name="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+        <constructor-arg ref="ehcacheCacheManager" />
+    </bean>
+    <bean name="ehcacheCacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+        <property name="configLocation" value="classpath:ehcache/ehcache.xml" />
+        <property name="shared" value="true" />
+    </bean>
 </beans>

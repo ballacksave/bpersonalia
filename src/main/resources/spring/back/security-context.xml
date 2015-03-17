@@ -1,73 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:security="http://www.springframework.org/schema/security"
-	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:security="http://www.springframework.org/schema/security"
+    xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<!--
-	Disable security check on statics resources uri, 
-	please look static resource config on webmvc-context.xml.
-	-->
-	<security:http security="none" pattern="/statics/**" />
-	<security:http use-expressions="true" disable-url-rewriting="true">
-		<!--
-		Login Handler
-		-->
-		<security:form-login login-page="/login" 
-			login-processing-url="/authenticate"
-			authentication-failure-url="/login?failed=true"
-			username-parameter="username"
-			password-parameter="password"
-			default-target-url="/"
-			always-use-default-target="false" />
-		
-		<!--
-		Logout handler
-		-->
-		<security:logout logout-url="/logout"
-			logout-success-url="/login?logout=true"
-			invalidate-session="true"
-			delete-cookies="JSESSIONID" />
-		
-		
-		<!-- 
-		Enable Remember me 
-		-->
-		<security:remember-me remember-me-parameter="remember-me" />
-		
-		<!--
-		Enable CSRF.
-		-->
-		<!-- security:csrf / -->
-		
-		<!-- 
-		Define security interception against url, from specific to general
-		-->
-		<security:intercept-url pattern="/forgot-password" access="permitAll()" />
-		<security:intercept-url pattern="/login" access="permitAll()" />
-		<security:intercept-url pattern="/logout" access="permitAll()" />
-		<security:intercept-url pattern="/**" access="isAuthenticated()" />
-	</security:http>
-	
-	<security:authentication-manager>
-		<security:authentication-provider>
-			<security:password-encoder ref="passwordEncoder">
-			</security:password-encoder>
-			<security:user-service>
-				<!-- 
-				Username : administrator; Password : password
-				Username : user; Password : password 
-				-->
-				<security:user name="administrator" 
-					password="$2a$10$wH7c.Ktn3Jw.VynYeXbTKuVAcgxlZhnxG2ULwUYJuSvAtmth5NjlO" 
-					authorities="ADMIN" />
-				<security:user name="user" 
-					password="$2a$10$wH7c.Ktn3Jw.VynYeXbTKuVAcgxlZhnxG2ULwUYJuSvAtmth5NjlO" 
-					authorities="USER" />
-			</security:user-service>
-		</security:authentication-provider>
-	</security:authentication-manager>
-	
-	<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+    <!-- Disable security check on statics resources uri, please look static 
+        resource config on webmvc-context.xml. -->
+    <security:http security="none" pattern="/statics/**" />
+    <security:http use-expressions="true"
+        disable-url-rewriting="true">
+        <!-- Login Handler -->
+        <security:form-login login-page="/login"
+            login-processing-url="/authenticate"
+            authentication-failure-url="/login?failed=true"
+            username-parameter="username" password-parameter="password"
+            default-target-url="/" always-use-default-target="false" />
+
+        <!-- Logout handler -->
+        <security:logout logout-url="/logout"
+            logout-success-url="/login?logout=true" invalidate-session="true"
+            delete-cookies="JSESSIONID" />
+
+        <!-- Enable Remember me -->
+        <security:remember-me remember-me-parameter="remember-me" />
+
+        <!-- Enable CSRF. -->
+        <!-- security:csrf / -->
+
+        <!-- Define security interception against url, from specific to general -->
+        <security:intercept-url pattern="/forgot-password" access="permitAll()" />
+        <security:intercept-url pattern="/login" access="permitAll()" />
+        <security:intercept-url pattern="/logout" access="permitAll()" />
+        <security:intercept-url pattern="/**" access="isAuthenticated()" />
+    </security:http>
+
+    <security:authentication-manager>
+        <security:authentication-provider>
+            <security:password-encoder ref="passwordEncoder">
+            </security:password-encoder>
+            <security:user-service>
+                <!-- Username : administrator; Password : password Username 
+                    : user; Password : password -->
+                <security:user name="administrator"
+                    password="$2a$10$wH7c.Ktn3Jw.VynYeXbTKuVAcgxlZhnxG2ULwUYJuSvAtmth5NjlO"
+                    authorities="ADMIN" />
+                <security:user name="user"
+                    password="$2a$10$wH7c.Ktn3Jw.VynYeXbTKuVAcgxlZhnxG2ULwUYJuSvAtmth5NjlO"
+                    authorities="USER" />
+            </security:user-service>
+        </security:authentication-provider>
+    </security:authentication-manager>
+
+    <bean id="passwordEncoder"
+        class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+
+    <!-- Enabling method security  -->
+    <security:global-method-security secured-annotations="enabled" 
+        jsr250-annotations="enabled"
+        pre-post-annotations="enabled"
+        mode="aspectj">
+    </security:global-method-security>
+
+    <!-- Following configurations part are closely related to security's acl feature -->
+    <bean name="aclService" class="org.springframework.security.acls.jdbc.JdbcMutableAclService">
+        <constructor-arg ref="dataSource" />
+        <constructor-arg ref="lookupStrategy" />
+        <constructor-arg ref="aclCache" />
+    </bean>
+    
+    <bean name="lookupStrategy" class="org.springframework.security.acls.jdbc.BasicLookupStrategy">
+        <constructor-arg ref="dataSource" />
+        <constructor-arg ref="aclCache" />
+        <constructor-arg ref="permissionGrantingStrategy" />
+        <constructor-arg ref="aclAuthorizationStrategy" />
+    </bean>
+    <bean name="permissionGrantingStrategy" class="org.springframework.security.acls.domain.DefaultPermissionGrantingStrategy">
+        <constructor-arg>
+            <bean class="org.springframework.security.acls.domain.ConsoleAuditLogger" />
+        </constructor-arg>
+    </bean>
+    <bean name="aclAuthorizationStrategy" class="org.springframework.security.acls.domain.AclAuthorizationStrategyImpl">
+        <constructor-arg>
+            <array>
+                <bean class="org.springframework.security.core.authority.SimpleGrantedAuthority">
+                    <constructor-arg value="ROLE_ADMIN" />
+                </bean>
+            </array>
+        </constructor-arg>
+    </bean>
+    <bean name="aclCache" class="org.springframework.security.acls.domain.EhCacheBasedAclCache">
+        <constructor-arg>
+            <bean class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+                <property name="cacheManager" ref="ehcacheCacheManager" />
+                <property name="cacheName" value="securityAclCache" />
+            </bean>
+        </constructor-arg>
+    </bean>
 </beans>

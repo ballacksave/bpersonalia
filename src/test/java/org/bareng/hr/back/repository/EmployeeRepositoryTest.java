@@ -5,7 +5,6 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.isA;
 import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.Arrays;
@@ -16,6 +15,7 @@ import org.bareng.hr.back.entity.GenderType;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Propagation;
@@ -29,6 +29,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath*:spring/back/core-context.xml", "classpath*:spring/back/data-context.xml" })
+@ActiveProfiles("test")
 public class EmployeeRepositoryTest {
     /**
      * Autowire component under test.
@@ -48,13 +49,8 @@ public class EmployeeRepositoryTest {
 
         employeeRepository.insert(employee);
         
-        /**
-         * FIXME
-         * 
-         * Use dedicated db unit test tools or libraries, don't use our custom component for assertion.
-         */
-        assertThat(employeeRepository.countAll(), is(equalTo(1l)));
         assertThat(employee.getId(), allOf(is(notNullValue()), isA(Integer.class)));
+        assertThat(employeeRepository.countAll(), is(equalTo(1l)));
     }
     
     @Test
