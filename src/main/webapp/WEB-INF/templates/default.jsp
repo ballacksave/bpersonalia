@@ -12,12 +12,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <title><tiles:insertAttribute name="pageTitle" defaultValue="Belajar Bareng Java" /></title>
         
-        <link href="${staticResourcesBaseUrl}/bootstrap/3.3.2-1/css/bootstrap.min.css" rel="stylesheet">
-        <link href="${staticResourcesBaseUrl}/bootstrap/3.3.2-1/css/bootstrap-theme.min.css" rel="stylesheet">
+        <link href="${staticResourcesBaseUrl}/bootswatch-paper/3.3.1+2/css/bootstrap.min.css" rel="stylesheet">
+        
         <tiles:insertAttribute name="customStylesheets" ignore="true" />
         <style type="text/css">
             body {
-                padding-top: 75px;
+                padding-top: 85px;
             }
         </style>
         <tiles:insertAttribute name="customStyles" ignore="true" />
@@ -58,7 +58,7 @@
             </tiles:insertAttribute>
         </div>
         <script type="text/javascript" src="${staticResourcesBaseUrl}/jquery/1.11.1/jquery.min.js"></script>
-        <script type="text/javascript" src="${staticResourcesBaseUrl}/bootstrap/3.3.2-1/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="${staticResourcesBaseUrl}/bootstrap/3.3.4/js/bootstrap.min.js"></script>
         <tiles:insertAttribute name="customJavascripts" ignore="true" />
     </body>
 </html>

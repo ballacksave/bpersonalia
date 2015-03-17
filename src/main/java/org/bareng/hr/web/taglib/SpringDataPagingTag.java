@@ -79,7 +79,7 @@ public class SpringDataPagingTag extends SimpleTagSupport {
 			}
 			
 			StringBuilder navigationBuilder = new StringBuilder();
-			navigationBuilder.append("<ul class=\"pagination\">");
+			navigationBuilder.append("<ul class=\"pagination pagination-sm\">");
 			if(pagedDataList.isFirst() || currentPage > totalPages) {
 			    navigationBuilder.append("<li class=\"disabled\"><a aria-label=\"Previous\"><span aria-hidden=\"true\">&laquo;</span></a></li>");
 			}
